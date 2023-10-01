@@ -1,0 +1,184 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DefineTrace>true</DefineTrace>
+        <RuntimeIdentifiers>win-x86;win-x64;osx-x64;osx-arm64;linux-x64</RuntimeIdentifiers>
+        <IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows>
+        <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
+        <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configure)' == 'Debug'">
+        <DefineDebug>true</DefineDebug>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configure)' == 'Release'">
+        <DefineDebug>false</DefineDebug>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsWindows)' == 'true'">
+        <DefineConstants>Windows</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsOSX)' == 'true'">
+        <DefineConstants>OSX</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsLinux)' == 'true'">
+        <DefineConstants>Linux</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsWindows)' == 'true'">
+        <UseBackend>Vc2022</UseBackend>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsLinux)' == 'true'">
+        <UseBackend>X11</UseBackend>
+    </PropertyGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'MinGw'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\MinGw\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'MinGwW64'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\MinGwW64\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Ucrt'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Ucrt\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Vc2010'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Vc2010\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Vc2010'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Vc2010\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Vc2012'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Vc2012\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Vc2013'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Vc2013\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Vc2015'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Vc2015\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Vc2017'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Vc2017\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Vc2019'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Vc2019\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x86') And '$(UseBackend)' == 'Vc2022'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX86\Vc2022\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'MinGw'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\MinGw\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'Ucrt'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\Ucrt\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'Vc2010'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\Vc2010\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'Vc2012'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\Vc2012\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'Vc2013'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\Vc2013\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'Vc2015'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\Vc2015\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'Vc2017'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\Vc2017\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'Vc2019'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\Vc2019\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsWindows)' == 'true' Or '$(RuntimeIdentifier)' == 'win-x64') And '$(UseBackend)' == 'Vc2022'">
+        <Content Include="..\..\..\Native\Glfw\Windows\WinX64\Vc2022\glfw3.dll">
+            <Link>glfw3.dll</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(IsOSX)' == 'true' Or ('$(RuntimeIdentifier)' == 'osx-x64' Or '$(RuntimeIdentifier)' == 'osx-arm64')">
+        <Content Include="..\..\..\Native\Glfw\Osx\libglfw.3.dylib">
+            <Link>libglfw.so.3.3</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsLinux)' == 'true' Or '$(RuntimeIdentifier)' == 'linux-x64') And '$(UseBackend)' == 'X11'">
+        <Content Include="..\..\..\Native\Glfw\Linux\X11\libglfw.so.3.3">
+            <Link>libglfw.so.3.3</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="('$(IsLinux)' == 'true' Or '$(RuntimeIdentifier)' == 'linux-x64') And '$(UseBackend)' == 'Wayland'">
+        <Content Include="..\..\..\Native\Glfw\Linux\Wayland\libglfw.so.3.3">
+            <Link>libglfw.so.3.3</Link>
+        </Content>
+    </ItemGroup>
+
+</Project>

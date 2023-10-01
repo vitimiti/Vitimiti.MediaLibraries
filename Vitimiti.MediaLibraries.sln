@@ -1,10 +1,164 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windowing", "Windowing", "{C01E0BF7-B634-4F26-9AB9-A2B5A658D6F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glfw.Net", "Source\Windowing\Glfw.Net\Glfw.Net.csproj", "{2F77F361-B6F1-4C22-84A1-C34A380582E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Native", "Native", "{A40FF113-46F2-4B62-B975-B0FACF0B34CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Glfw", "Glfw", "{E9DED136-A255-4277-8B13-25605F45485B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linux", "Linux", "{D746628D-313A-4AEA-AFAC-08AD056D74CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wayland", "Wayland", "{5C5C1B64-72F1-4860-9CA4-AF107BD30493}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\LinuxX64\Wayland\libglfw.so.3.3 = Native\Glfw\LinuxX64\Wayland\libglfw.so.3.3
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "X11", "X11", "{EEEB35BC-B9FE-4432-A579-88673FA31695}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\LinuxX64\X11\libglfw.so.3.3 = Native\Glfw\LinuxX64\X11\libglfw.so.3.3
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{E640738C-7CEC-4F6E-BE2F-004B9AC18B9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinX86", "WinX86", "{B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinX64", "WinX64", "{E6D4E431-882B-422E-BD92-6A1A97D3356D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MinGw", "MinGw", "{DFCEE223-B554-4BEC-9264-42F6D29551DD}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX64\MinGw\glfw3.dll = Native\Glfw\Windows\WinX64\MinGw\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ucrt", "Ucrt", "{A858CD41-9500-4504-9B52-EE02555D7974}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX64\Ucrt\glfw3.dll = Native\Glfw\Windows\WinX64\Ucrt\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2012", "Vc2012", "{7A497B54-E281-4001-8BEE-21136C68784A}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX64\Vc2012\glfw3.dll = Native\Glfw\Windows\WinX64\Vc2012\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2013", "Vc2013", "{A0462364-E6A6-4941-8A98-8E6108496130}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX64\Vc2013\glfw3.dll = Native\Glfw\Windows\WinX64\Vc2013\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2015", "Vc2015", "{DAE3232B-C8DE-417D-8319-E5D8A7FA6CDE}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX64\Vc2015\glfw3.dll = Native\Glfw\Windows\WinX64\Vc2015\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2017", "Vc2017", "{2236F747-6339-499B-BE1A-7038B025BA8D}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX64\Vc2017\glfw3.dll = Native\Glfw\Windows\WinX64\Vc2017\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2019", "Vc2019", "{6E93B178-E09A-4F57-A64A-74F1E5F72656}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX64\Vc2019\glfw3.dll = Native\Glfw\Windows\WinX64\Vc2019\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2022", "Vc2022", "{347D8DF5-405E-4DD6-80DF-76BD27815D4D}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX64\Vc2022\glfw3.dll = Native\Glfw\Windows\WinX64\Vc2022\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MinGw", "MinGw", "{11F16C2C-C40B-491A-B788-CD2C54E1B25C}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\MinGw\glfw3.dll = Native\Glfw\Windows\WinX86\MinGw\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ucrt", "Ucrt", "{E0E2C02D-A16B-4F9D-B690-02DFAF1DA437}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\Ucrt\glfw3.dll = Native\Glfw\Windows\WinX86\Ucrt\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2012", "Vc2012", "{1C2F8AF5-88C8-4E0D-80A6-7782BE34ED8F}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\Vc2012\glfw3.dll = Native\Glfw\Windows\WinX86\Vc2012\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2013", "Vc2013", "{9C18C52F-F6EE-4D83-BC17-6B84956111C8}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\Vc2013\glfw3.dll = Native\Glfw\Windows\WinX86\Vc2013\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2015", "Vc2015", "{E31FCE4E-159B-44AC-B4EE-1D94FA2D44A9}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\Vc2015\glfw3.dll = Native\Glfw\Windows\WinX86\Vc2015\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2017", "Vc2017", "{0835DDDC-7A36-460E-8FEF-EFA7F20DEAAA}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\Vc2017\glfw3.dll = Native\Glfw\Windows\WinX86\Vc2017\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2019", "Vc2019", "{5CC3EDA3-1ABA-498B-A921-D2FB9B52BC5E}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\Vc2019\glfw3.dll = Native\Glfw\Windows\WinX86\Vc2019\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2022", "Vc2022", "{0E115274-2720-4674-A56A-B4C059522829}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\Vc2022\glfw3.dll = Native\Glfw\Windows\WinX86\Vc2022\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MinGwW64", "MinGwW64", "{597BF856-D251-4BA7-8005-355A2C5F2F23}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\MinGwW64\glfw3.dll = Native\Glfw\Windows\WinX86\MinGwW64\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vc2010", "Vc2010", "{6A635B28-2A8D-496B-A1A5-90BDF80238AE}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Windows\WinX86\Vc2010\glfw3.dll = Native\Glfw\Windows\WinX86\Vc2010\glfw3.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Osx", "Osx", "{B2531E46-71AE-4DBE-9E97-2695FB7600A1}"
+	ProjectSection(SolutionItems) = preProject
+		Native\Glfw\Osx\libglfw.3.dylib = Native\Glfw\Osx\libglfw.3.dylib
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F77F361-B6F1-4C22-84A1-C34A380582E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F77F361-B6F1-4C22-84A1-C34A380582E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F77F361-B6F1-4C22-84A1-C34A380582E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F77F361-B6F1-4C22-84A1-C34A380582E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2F77F361-B6F1-4C22-84A1-C34A380582E0} = {C01E0BF7-B634-4F26-9AB9-A2B5A658D6F4}
+		{E9DED136-A255-4277-8B13-25605F45485B} = {A40FF113-46F2-4B62-B975-B0FACF0B34CD}
+		{D746628D-313A-4AEA-AFAC-08AD056D74CB} = {E9DED136-A255-4277-8B13-25605F45485B}
+		{5C5C1B64-72F1-4860-9CA4-AF107BD30493} = {D746628D-313A-4AEA-AFAC-08AD056D74CB}
+		{EEEB35BC-B9FE-4432-A579-88673FA31695} = {D746628D-313A-4AEA-AFAC-08AD056D74CB}
+		{E640738C-7CEC-4F6E-BE2F-004B9AC18B9A} = {E9DED136-A255-4277-8B13-25605F45485B}
+		{B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE} = {E640738C-7CEC-4F6E-BE2F-004B9AC18B9A}
+		{E6D4E431-882B-422E-BD92-6A1A97D3356D} = {E640738C-7CEC-4F6E-BE2F-004B9AC18B9A}
+		{DFCEE223-B554-4BEC-9264-42F6D29551DD} = {E6D4E431-882B-422E-BD92-6A1A97D3356D}
+		{A858CD41-9500-4504-9B52-EE02555D7974} = {E6D4E431-882B-422E-BD92-6A1A97D3356D}
+		{7A497B54-E281-4001-8BEE-21136C68784A} = {E6D4E431-882B-422E-BD92-6A1A97D3356D}
+		{A0462364-E6A6-4941-8A98-8E6108496130} = {E6D4E431-882B-422E-BD92-6A1A97D3356D}
+		{DAE3232B-C8DE-417D-8319-E5D8A7FA6CDE} = {E6D4E431-882B-422E-BD92-6A1A97D3356D}
+		{2236F747-6339-499B-BE1A-7038B025BA8D} = {E6D4E431-882B-422E-BD92-6A1A97D3356D}
+		{6E93B178-E09A-4F57-A64A-74F1E5F72656} = {E6D4E431-882B-422E-BD92-6A1A97D3356D}
+		{347D8DF5-405E-4DD6-80DF-76BD27815D4D} = {E6D4E431-882B-422E-BD92-6A1A97D3356D}
+		{11F16C2C-C40B-491A-B788-CD2C54E1B25C} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{E0E2C02D-A16B-4F9D-B690-02DFAF1DA437} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{1C2F8AF5-88C8-4E0D-80A6-7782BE34ED8F} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{9C18C52F-F6EE-4D83-BC17-6B84956111C8} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{E31FCE4E-159B-44AC-B4EE-1D94FA2D44A9} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{0835DDDC-7A36-460E-8FEF-EFA7F20DEAAA} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{5CC3EDA3-1ABA-498B-A921-D2FB9B52BC5E} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{0E115274-2720-4674-A56A-B4C059522829} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{597BF856-D251-4BA7-8005-355A2C5F2F23} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{6A635B28-2A8D-496B-A1A5-90BDF80238AE} = {B2CEAB82-DB26-4CD1-8D48-FE2EB8B490FE}
+		{B2531E46-71AE-4DBE-9E97-2695FB7600A1} = {E9DED136-A255-4277-8B13-25605F45485B}
 	EndGlobalSection
 EndGlobal
