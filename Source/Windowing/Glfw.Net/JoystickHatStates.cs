@@ -1,4 +1,4 @@
-namespace Glfw.Net;
+namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 [Flags]
 public enum JoystickHatStates

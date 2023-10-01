@@ -1,4 +1,4 @@
-namespace Glfw.Net;
+namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 public readonly struct Version : IEquatable<Version>, IComparable<Version>, IComparable
 {
