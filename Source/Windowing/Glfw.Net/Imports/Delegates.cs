@@ -22,7 +22,7 @@ internal static class NativeGlfw
         IntPtr[] paths);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void ErrorFunctionDelegate(int errorCode, IntPtr description);
+    public delegate void ErrorFunctionDelegate(Error errorCode, IntPtr description);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void FrameBufferSizeFunctionDelegate(IntPtr window, int width, int height);
