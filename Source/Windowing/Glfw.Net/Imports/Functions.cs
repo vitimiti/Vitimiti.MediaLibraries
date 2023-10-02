@@ -31,6 +31,9 @@ internal static partial class NativeGlfw
     [DllImport(LibraryName, EntryPoint = "glfwGetVersionString", CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr GetVersionString();
 
+    [DllImport(LibraryName, EntryPoint = "glfwGetError", CallingConvention = CallingConvention.Cdecl)]
+    public static extern Error GetError(out IntPtr description);
+
     [DllImport(LibraryName, EntryPoint = "glfwSetErrorCallback", CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr SetErrorCallback(IntPtr callback);
 }

@@ -23,6 +23,12 @@ public static class Glfw
         NativeGlfw.InitHint(hint, value);
     }
 
+    public static (Error Error, string? Description) GetError()
+    {
+        Error error = NativeGlfw.GetError(out IntPtr description);
+        return (error, Marshal.PtrToStringAnsi(description));
+    }
+
     public static ErrorFunctionDelegate? SetErrorCallback(ErrorFunctionDelegate? callback)
     {
         IntPtr result;
