@@ -2,7 +2,7 @@ namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 public enum Error
 {
-    NoError = 0,
+    None = 0,
     NotInitialized = 0x00010001,
     NoCurrentContext = 0x00010002,
     InvalidEnum = 0x00010003,
