@@ -67,4 +67,10 @@ internal static partial class NativeGlfw
 
     [DllImport(LibraryName, EntryPoint = "glfwSetMonitorCallback", CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr SetMonitorCallback(IntPtr callback);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetVideoModes", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr GetVideoModes(IntPtr monitor, out int count);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetVideoMode", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr GetVideoMode(IntPtr monitor);
 }

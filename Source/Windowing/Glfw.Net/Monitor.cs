@@ -101,4 +101,34 @@ public class Monitor
 
         return (monitor, @event) => nativeCallback.Invoke(monitor._handle, @event);
     }
+
+    public VideoMode?[]? GetVideoModes()
+    {
+        IntPtr nativeVideoModes = NativeGlfw.GetVideoModes(_handle, out int count);
+        if (nativeVideoModes == IntPtr.Zero)
+        {
+            return null;
+        }
+
+        VideoMode?[] videoModes = new VideoMode?[count];
+        IntPtr[] videoModesPtrArray = new IntPtr[count];
+        for (int i = 0; i < count; i++)
+        {
+            videoModesPtrArray[i] = Marshal.AllocHGlobal(Marshal.SizeOf(nativeVideoModes) / count);
+        }
+
+        Marshal.Copy(nativeVideoModes, videoModesPtrArray, 0, count);
+        for (int i = 0; i < count; i++)
+        {
+            videoModes[i] = videoModesPtrArray[i] == IntPtr.Zero ? null : new VideoMode(videoModesPtrArray[i]);
+        }
+
+        return videoModes;
+    }
+
+    public VideoMode? GetVideoMode()
+    {
+        IntPtr videoMode = NativeGlfw.GetVideoMode(_handle);
+        return videoMode == IntPtr.Zero ? null : new VideoMode(videoMode);
+    }
 }
