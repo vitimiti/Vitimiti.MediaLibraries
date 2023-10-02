@@ -16,6 +16,15 @@ internal static partial class NativeGlfw
 #endif
         ;
 
+    [DllImport(LibraryName, EntryPoint = "glfwInit", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void Init();
+
+    [DllImport(LibraryName, EntryPoint = "glfwTerminate", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void Terminate();
+
+    [DllImport(LibraryName, EntryPoint = "glfwInitHint", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void InitHint(InitHint hint, int value);
+
     [DllImport(LibraryName, EntryPoint = "glfwSetErrorCallback", CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr SetErrorCallback(IntPtr callback);
 }

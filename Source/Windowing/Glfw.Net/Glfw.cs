@@ -8,6 +8,21 @@ public static class Glfw
 {
     public delegate void ErrorFunctionDelegate(Error errorCode, string? description);
 
+    public static void Init()
+    {
+        NativeGlfw.Init();
+    }
+
+    public static void Terminate()
+    {
+        NativeGlfw.Terminate();
+    }
+
+    public static void InitHint(InitHint hint, int value)
+    {
+        NativeGlfw.InitHint(hint, value);
+    }
+
     public static ErrorFunctionDelegate? SetErrorCallback(ErrorFunctionDelegate? callback)
     {
         IntPtr result;
