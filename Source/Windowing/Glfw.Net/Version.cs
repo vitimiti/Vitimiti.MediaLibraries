@@ -1,17 +1,25 @@
+using System.Runtime.InteropServices;
+
+using Vitimiti.MediaLibraries.Glfw.Net.Imports;
+
 namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 public readonly struct Version : IEquatable<Version>, IComparable<Version>, IComparable
 {
-    public byte Major { get; }
-    public byte Minor { get; }
-    public byte Revision { get; }
+    public byte Major { get; private init; }
+    public byte Minor { get; private init; }
+    public byte Revision { get; private init; }
 
     public Version()
     {
-        Major = 3;
-        Minor = 3;
-        Revision = 8;
+        NativeGlfw.GetVersion(out int major, out int minor, out int revision);
+        Major = (byte)major;
+        Minor = (byte)minor;
+        Revision = (byte)revision;
     }
+
+    public static Version ExpectedVersion => new() { Major = 3, Minor = 3, Revision = 8 };
+    public static string? String => Marshal.PtrToStringAnsi(NativeGlfw.GetVersionString());
 
     public override string ToString()
     {
