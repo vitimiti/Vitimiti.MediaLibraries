@@ -73,4 +73,13 @@ internal static partial class NativeGlfw
 
     [DllImport(LibraryName, EntryPoint = "glfwGetVideoMode", CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr GetVideoMode(IntPtr monitor);
+
+    [DllImport(LibraryName, EntryPoint = "glfwSetGamma", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetGamma(IntPtr monitor, float gamma);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetGammaRamp", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr GetGammaRamp(IntPtr monitor);
+
+    [DllImport(LibraryName, EntryPoint = "glfwSetGammaRamp", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetGammaRamp(IntPtr monitor, IntPtr ramp);
 }
