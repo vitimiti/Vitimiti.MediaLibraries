@@ -82,4 +82,29 @@ internal static partial class NativeGlfw
 
     [DllImport(LibraryName, EntryPoint = "glfwSetGammaRamp", CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetGammaRamp(IntPtr monitor, IntPtr ramp);
+
+    [DllImport(LibraryName, EntryPoint = "glfwDefaultWindowHints", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void DefaultWindowHints();
+
+    [DllImport(LibraryName, EntryPoint = "glfwWindowHint", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void WindowHint(WindowHint hint, int value);
+
+    [DllImport(LibraryName, EntryPoint = "glfwWindowHintString", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void WindowHintString(WindowHint hint, IntPtr value);
+
+    [DllImport(LibraryName, EntryPoint = "glfwCreateWindow", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr CreateWindow(int width, int height, IntPtr title, IntPtr monitor, IntPtr share);
+
+    [DllImport(LibraryName, EntryPoint = "glfwDestroyWindow", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void DestroyWindow(IntPtr window);
+
+    [DllImport(LibraryName, EntryPoint = "glfwWindowShouldClose", CallingConvention = CallingConvention.Cdecl)]
+    [return: MarshalAs(UnmanagedType.I1)]
+    public static extern bool WindowShouldClose(IntPtr window);
+
+    [DllImport(LibraryName, EntryPoint = "glfwSetWindowShouldClose", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetWindowShouldClose(IntPtr window, [MarshalAs(UnmanagedType.I1)] bool value);
+
+    [DllImport(LibraryName, EntryPoint = "glfwSetWindowTitle", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetWindowTitle(IntPtr window, IntPtr title);
 }

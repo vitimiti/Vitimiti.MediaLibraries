@@ -1,19 +1,19 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 
+using Microsoft.Win32.SafeHandles;
+
 using Vitimiti.MediaLibraries.Glfw.Net.Imports;
 
 namespace Vitimiti.MediaLibraries.Glfw.Net;
 
-public class Monitor
+public class Monitor : SafeHandleZeroOrMinusOneIsInvalid
 {
     public delegate void FunctionDelegate(Monitor monitor, Event @event);
 
-    private readonly IntPtr _handle;
-
-    internal Monitor(IntPtr handle)
+    internal Monitor(IntPtr newHandle) : base(false)
     {
-        _handle = handle;
+        handle = newHandle;
     }
 
     public static Monitor? Primary
@@ -29,7 +29,7 @@ public class Monitor
     {
         get
         {
-            NativeGlfw.GetMonitorPos(_handle, out int xPos, out int yPos);
+            NativeGlfw.GetMonitorPos(handle, out int xPos, out int yPos);
             return new Point(xPos, yPos);
         }
     }
@@ -38,7 +38,7 @@ public class Monitor
     {
         get
         {
-            NativeGlfw.GetMonitorWorkArea(_handle, out int xPos, out int yPos, out int width, out int height);
+            NativeGlfw.GetMonitorWorkArea(handle, out int xPos, out int yPos, out int width, out int height);
             return new Rectangle(xPos, yPos, width, height);
         }
     }
@@ -47,7 +47,7 @@ public class Monitor
     {
         get
         {
-            NativeGlfw.GetMonitorPhysicalSize(_handle, out int width, out int height);
+            NativeGlfw.GetMonitorPhysicalSize(handle, out int width, out int height);
             return new Size(width, height);
         }
     }
@@ -56,28 +56,28 @@ public class Monitor
     {
         get
         {
-            NativeGlfw.GetMonitorContentScale(_handle, out float xScale, out float yScale);
+            NativeGlfw.GetMonitorContentScale(handle, out float xScale, out float yScale);
             return new PointF(xScale, yScale);
         }
     }
 
-    public string? Name => Marshal.PtrToStringAnsi(NativeGlfw.GetMonitorName(_handle));
+    public string? Name => Marshal.PtrToStringAnsi(NativeGlfw.GetMonitorName(handle));
 
     public Pointer? UserPointer
     {
         get
         {
-            IntPtr pointer = NativeGlfw.glfwGetMonitorUserPointer(_handle);
+            IntPtr pointer = NativeGlfw.glfwGetMonitorUserPointer(handle);
             return pointer == IntPtr.Zero ? null : new Pointer(pointer);
         }
-        set => NativeGlfw.SetMonitorUserPointer(_handle, value is null ? IntPtr.Zero : value.GetInternalHandle());
+        set => NativeGlfw.SetMonitorUserPointer(handle, value is null ? IntPtr.Zero : value.GetInternalHandle());
     }
 
     public VideoMode?[]? VideoModes
     {
         get
         {
-            IntPtr nativeVideoModes = NativeGlfw.GetVideoModes(_handle, out int count);
+            IntPtr nativeVideoModes = NativeGlfw.GetVideoModes(handle, out int count);
             if (nativeVideoModes == IntPtr.Zero)
             {
                 return null;
@@ -104,7 +104,7 @@ public class Monitor
     {
         get
         {
-            IntPtr videoMode = NativeGlfw.GetVideoMode(_handle);
+            IntPtr videoMode = NativeGlfw.GetVideoMode(handle);
             return videoMode == IntPtr.Zero ? null : new VideoMode(videoMode);
         }
     }
@@ -113,10 +113,20 @@ public class Monitor
     {
         get
         {
-            IntPtr gammaRamp = NativeGlfw.GetGammaRamp(_handle);
+            IntPtr gammaRamp = NativeGlfw.GetGammaRamp(handle);
             return gammaRamp == IntPtr.Zero ? null : new GammaRamp(gammaRamp);
         }
-        set => NativeGlfw.SetGammaRamp(_handle, value?.GetInternalHandle() ?? IntPtr.Zero);
+        set => NativeGlfw.SetGammaRamp(handle, value?.GetInternalHandle() ?? IntPtr.Zero);
+    }
+
+    protected override bool ReleaseHandle()
+    {
+        return true;
+    }
+
+    internal IntPtr GetInternalHandle()
+    {
+        return handle;
     }
 
     public static FunctionDelegate? SetCallback(FunctionDelegate? callback)
@@ -145,11 +155,11 @@ public class Monitor
         NativeGlfw.MonitorFunctionDelegate nativeCallback =
             Marshal.GetDelegateForFunctionPointer<NativeGlfw.MonitorFunctionDelegate>(result);
 
-        return (monitor, @event) => nativeCallback.Invoke(monitor._handle, @event);
+        return (monitor, @event) => nativeCallback.Invoke(monitor.handle, @event);
     }
 
     public void SetGammaRamp(float value)
     {
-        NativeGlfw.SetGamma(_handle, value);
+        NativeGlfw.SetGamma(handle, value);
     }
 }

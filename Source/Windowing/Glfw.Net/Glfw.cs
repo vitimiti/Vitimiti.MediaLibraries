@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Runtime.InteropServices;
 
 using Vitimiti.MediaLibraries.Glfw.Net.Imports;
@@ -80,5 +81,13 @@ public static class Glfw
         }
 
         return monitors;
+    }
+
+    public static Window? CreateWindow(Size size, string? title, Monitor? monitor, Window? share)
+    {
+        IntPtr window = NativeGlfw.CreateWindow(size.Width, size.Height, Marshal.StringToHGlobalAnsi(title),
+            monitor?.GetInternalHandle() ?? IntPtr.Zero, share?.GetInternalHandle() ?? IntPtr.Zero);
+
+        return window == IntPtr.Zero ? null : new Window(window);
     }
 }

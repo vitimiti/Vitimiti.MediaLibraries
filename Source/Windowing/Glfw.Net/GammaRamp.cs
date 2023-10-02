@@ -1,18 +1,18 @@
 using System.Runtime.InteropServices;
 
+using Microsoft.Win32.SafeHandles;
+
 using Vitimiti.MediaLibraries.Glfw.Net.Imports;
 
 namespace Vitimiti.MediaLibraries.Glfw.Net;
 
-public class GammaRamp
+public class GammaRamp : SafeHandleZeroOrMinusOneIsInvalid
 {
-    private readonly IntPtr _handle;
-
-    internal GammaRamp(IntPtr handle)
+    internal GammaRamp(IntPtr newHandle) : base(false)
     {
-        _handle = handle;
+        handle = newHandle;
         NativeGlfw.GammaRamp nativeGammaRamp =
-            (NativeGlfw.GammaRamp)(Marshal.PtrToStructure(handle, typeof(NativeGlfw.GammaRamp)) ??
+            (NativeGlfw.GammaRamp)(Marshal.PtrToStructure(newHandle, typeof(NativeGlfw.GammaRamp)) ??
                                    new NativeGlfw.GammaRamp());
 
         Red = new ushort[nativeGammaRamp.Size];
@@ -47,6 +47,11 @@ public class GammaRamp
 
     internal IntPtr GetInternalHandle()
     {
-        return _handle;
+        return handle;
+    }
+
+    protected override bool ReleaseHandle()
+    {
+        return true;
     }
 }

@@ -1,11 +1,16 @@
+using Microsoft.Win32.SafeHandles;
+
 namespace Vitimiti.MediaLibraries.Glfw.Net;
 
-public class VideoMode
+public class VideoMode : SafeHandleZeroOrMinusOneIsInvalid
 {
-    private readonly IntPtr _handle;
-
-    internal VideoMode(IntPtr handle)
+    internal VideoMode(IntPtr newHandle) : base(false)
     {
-        _handle = handle;
+        handle = newHandle;
+    }
+
+    protected override bool ReleaseHandle()
+    {
+        return true;
     }
 }
