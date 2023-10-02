@@ -4,7 +4,7 @@ using Vitimiti.MediaLibraries.Glfw.Net.Imports;
 
 namespace Vitimiti.MediaLibraries.Glfw.Net;
 
-public static class Setup
+public static class Glfw
 {
     public delegate void ErrorFunctionDelegate(Error errorCode, string? description);
 
