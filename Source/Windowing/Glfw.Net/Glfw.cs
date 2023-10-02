@@ -32,7 +32,7 @@ public static class Glfw
     public static ErrorFunctionDelegate? SetErrorCallback(ErrorFunctionDelegate? callback)
     {
         IntPtr result;
-        if (callback == null)
+        if (callback is null)
         {
             result = NativeGlfw.SetErrorCallback(IntPtr.Zero);
         }
@@ -56,5 +56,29 @@ public static class Glfw
             Marshal.GetDelegateForFunctionPointer<NativeGlfw.ErrorFunctionDelegate>(result);
 
         return (code, description) => nativeCallback.Invoke(code, Marshal.StringToHGlobalAnsi(description));
+    }
+
+    public static Monitor?[]? GetMonitors()
+    {
+        IntPtr nativeMonitors = NativeGlfw.GetMonitors(out int count);
+        if (nativeMonitors == IntPtr.Zero)
+        {
+            return null;
+        }
+
+        Monitor?[] monitors = new Monitor?[count];
+        IntPtr[] monitorsPtrArray = new IntPtr[count];
+        for (int i = 0; i < count; i++)
+        {
+            monitorsPtrArray[i] = Marshal.AllocHGlobal(Marshal.SizeOf(nativeMonitors) / count);
+        }
+
+        Marshal.Copy(nativeMonitors, monitorsPtrArray, 0, count);
+        for (int i = 0; i < count; i++)
+        {
+            monitors[i] = monitorsPtrArray[i] == IntPtr.Zero ? null : new Monitor(monitorsPtrArray[i]);
+        }
+
+        return monitors;
     }
 }
