@@ -36,4 +36,26 @@ internal static partial class NativeGlfw
 
     [DllImport(LibraryName, EntryPoint = "glfwGetVersionString", CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr GetVersionString();
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetMonitors", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr GetMonitors(out int count);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetPrimaryMonitor", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr GetPrimaryMonitor();
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetMonitorPos", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void GetMonitorPosition(IntPtr monitor, out int xPos, out int yPos);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetMonitorWorkarea", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void GetMonitorWorkArea(IntPtr monitor, out int xPos, out int yPos, out int width,
+        out int height);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetMonitorPhysicalSize", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void GetMonitorPhysicalSize(IntPtr monitor, out int width, out int height);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetMonitorContentScale", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void GetMonitorContentScale(IntPtr monitor, out float xScale, out float yScale);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetMonitorName", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr GetMonitorName(IntPtr monitor);
 }
