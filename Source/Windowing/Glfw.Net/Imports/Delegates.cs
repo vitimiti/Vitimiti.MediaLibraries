@@ -5,5 +5,5 @@ namespace Vitimiti.MediaLibraries.Glfw.Net.Imports;
 internal static partial class NativeGlfw
 {
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void ErrorFunctionDelegate(ErrorCode errorCode, IntPtr description);
+    public delegate void ErrorFunctionDelegate(int errorCode, IntPtr description);
 }

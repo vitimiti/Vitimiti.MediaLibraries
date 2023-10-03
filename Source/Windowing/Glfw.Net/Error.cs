@@ -26,9 +26,9 @@ public static class Error
             result = NativeGlfw.SetErrorCallback(
                 Marshal.GetFunctionPointerForDelegate((NativeGlfw.ErrorFunctionDelegate)NativeErrorCallback));
 
-            void NativeErrorCallback(ErrorCode code, IntPtr description)
+            void NativeErrorCallback(int code, IntPtr description)
             {
-                callback.Invoke(code, Marshal.PtrToStringAnsi(description));
+                callback.Invoke((ErrorCode)code, Marshal.PtrToStringAnsi(description));
             }
         }
 
@@ -40,6 +40,6 @@ public static class Error
         NativeGlfw.ErrorFunctionDelegate nativeCallback =
             Marshal.GetDelegateForFunctionPointer<NativeGlfw.ErrorFunctionDelegate>(result);
 
-        return (code, description) => nativeCallback.Invoke(code, Marshal.StringToHGlobalAnsi(description));
+        return (code, description) => nativeCallback.Invoke((int)code, Marshal.StringToHGlobalAnsi(description));
     }
 }
