@@ -52,12 +52,12 @@ public class Monitor : SafeHandleZeroOrMinusOneIsInvalid
         }
     }
 
-    public PointF ContentScale
+    public (float XScale, float YScale) ContentScale
     {
         get
         {
             NativeGlfw.GetMonitorContentScale(handle, out float xScale, out float yScale);
-            return new PointF(xScale, yScale);
+            return (xScale, yScale);
         }
     }
 
@@ -70,7 +70,7 @@ public class Monitor : SafeHandleZeroOrMinusOneIsInvalid
             IntPtr pointer = NativeGlfw.glfwGetMonitorUserPointer(handle);
             return pointer == IntPtr.Zero ? null : new Pointer(pointer);
         }
-        set => NativeGlfw.SetMonitorUserPointer(handle, value is null ? IntPtr.Zero : value.GetInternalHandle());
+        set => NativeGlfw.SetMonitorUserPointer(handle, value?.GetInternalHandle() ?? IntPtr.Zero);
     }
 
     public VideoMode?[]? VideoModes

@@ -9,9 +9,11 @@ public static class Glfw
 {
     public delegate void ErrorFunctionDelegate(Error errorCode, string? description);
 
-    public static void Init()
+    public const int DontCare = -1;
+
+    public static bool Init()
     {
-        NativeGlfw.Init();
+        return NativeGlfw.Init();
     }
 
     public static void Terminate()
@@ -19,7 +21,7 @@ public static class Glfw
         NativeGlfw.Terminate();
     }
 
-    public static void InitHint(InitHint hint, int value)
+    public static void InitHint(int hint, int value)
     {
         NativeGlfw.InitHint(hint, value);
     }

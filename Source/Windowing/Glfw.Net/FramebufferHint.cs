@@ -2,7 +2,6 @@ namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 public enum FramebufferHint
 {
-    DontCare = -1,
     RedBits = 0x00021001,
     GreenBits = 0x00021002,
     BlueBits = 0x00021003,

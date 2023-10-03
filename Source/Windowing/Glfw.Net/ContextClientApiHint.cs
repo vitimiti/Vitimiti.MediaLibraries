@@ -2,7 +2,6 @@ namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 public enum ContextClientApiHint
 {
-    DontCare = -1,
     ClientApi = 0x00022001,
     VersionMajor = 0x00022002,
     VersionMinor = 0x00022003,
