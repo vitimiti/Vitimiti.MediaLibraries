@@ -2,7 +2,7 @@ namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 public enum CursorMode
 {
-    Normal = 0x00034001,
-    Hidden = 0x00034002,
-    Disabled = 0x00034003
+    Normal = 0x034001,
+    Hidden = 0x034002,
+    Disabled = 0x034003
 }

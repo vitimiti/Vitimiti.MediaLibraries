@@ -2,15 +2,12 @@ namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 public enum WindowAttribute
 {
-    Focused = 0x00020001,
-    Iconified = 0x00020002,
-    Resizable = 0x00020003,
-    Visible = 0x00020004,
-    Decorated = 0x00020005,
-    Iconify = 0x00020006,
-    Floating = 0x00020007,
-    Maximized = 0x00020008,
-    TransparentFramebuffer = 0x0002000A,
-    Hovered = 0x0002000B,
-    FocusOnShow = 0x0002000C
+    Focused = 0x020001,
+    AutoIconify = 0x020002,
+    Maximized = 0x020008,
+    Visible = 0x020004,
+    Resizable = 0x020003,
+    Decorated = 0x020005,
+    Floating = 0x020007,
+    MouseHover = 0x02000B
 }
