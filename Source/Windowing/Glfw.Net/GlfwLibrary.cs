@@ -21,4 +21,9 @@ public sealed class GlfwLibrary : IDisposable
     {
         NativeGlfw.Terminate();
     }
+
+    public static void SetHint(InitHint hint, bool enabled)
+    {
+        NativeGlfw.InitHint((int)hint, enabled ? (int)Constants.True : (int)Constants.False);
+    }
 }
