@@ -6,7 +6,7 @@ namespace Vitimiti.MediaLibraries.Glfw.Net;
 
 public static class Error
 {
-    public delegate void Function(ErrorCode errorCode, string? description);
+    public delegate void FunctionDelegate(ErrorCode errorCode, string? description);
 
     public static (ErrorCode ErrorCode, string? Description) Get()
     {
@@ -14,7 +14,7 @@ public static class Error
         return (errorCode, Marshal.PtrToStringAnsi(description));
     }
 
-    public static Function? SetCallback(Function? callback)
+    public static FunctionDelegate? SetCallback(FunctionDelegate? callback)
     {
         IntPtr result;
         if (callback is null)
