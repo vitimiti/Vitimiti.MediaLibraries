@@ -30,4 +30,10 @@ internal static partial class NativeGlfw
 
     [DllImport(LibraryName, EntryPoint = "glfwInitHint", CallingConvention = CallingConvention.Cdecl)]
     public static extern void InitHint(int hint, int value);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetVersion", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void GetVersion(out int major, out int minor, out int revision);
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetVersionString", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr GetVersionString();
 }
