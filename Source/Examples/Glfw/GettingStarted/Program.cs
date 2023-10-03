@@ -18,19 +18,22 @@ using GlfwLibrary? glfwLibrary = GlfwLibrary.Initialize;
 if (glfwLibrary is null)
 {
     ExceptionFunction();
+    return;
 }
 
 Monitor?[]? monitors = Monitor.Array;
 if (monitors is null)
 {
     ExceptionFunction();
+    return;
 }
 
-Console.WriteLine($"Found {monitors!.Length} monitor(s)");
+Console.WriteLine($"Found {monitors.Length} monitor(s)");
 Monitor? monitor = Monitor.Primary;
 if (monitor is null)
 {
     ExceptionFunction();
+    return;
 }
 
 for (int i = 0; i < monitors.Length; i++)
