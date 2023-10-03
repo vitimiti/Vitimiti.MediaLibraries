@@ -102,6 +102,35 @@ public sealed class Monitor : SafeHandleZeroOrMinusOneIsInvalid, IEquatable<Moni
         return NativeGlfw.GetMonitorUserPointer(monitor.handle);
     }
 
+    public static FunctionDelegate? SetCallback(FunctionDelegate? callback)
+    {
+        IntPtr result;
+        if (callback is null)
+        {
+            result = NativeGlfw.SetMonitorCallback(IntPtr.Zero);
+        }
+        else
+        {
+            result = NativeGlfw.SetMonitorCallback(
+                Marshal.GetFunctionPointerForDelegate((NativeGlfw.MonitorFunctionDelegate)NativeMonitorCallback));
+
+            void NativeMonitorCallback(IntPtr monitor, int @event)
+            {
+                callback.Invoke(new Monitor(monitor), (ConnectionStatus)@event);
+            }
+        }
+
+        if (result == IntPtr.Zero)
+        {
+            return null;
+        }
+
+        NativeGlfw.MonitorFunctionDelegate nativeCallback =
+            Marshal.GetDelegateForFunctionPointer<NativeGlfw.MonitorFunctionDelegate>(result);
+
+        return (monitor, status) => nativeCallback.Invoke(monitor?.handle ?? IntPtr.Zero, (int)status);
+    }
+
     public override string ToString()
     {
         return

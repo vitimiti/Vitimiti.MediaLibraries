@@ -64,4 +64,7 @@ internal static partial class NativeGlfw
 
     [DllImport(LibraryName, EntryPoint = "glfwGetMonitorUserPointer", CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr GetMonitorUserPointer(IntPtr monitor);
+
+    [DllImport(LibraryName, EntryPoint = "glfwSetMonitorCallback", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr SetMonitorCallback(IntPtr monitor);
 }
