@@ -91,7 +91,15 @@ public sealed class Version : IEquatable<Version>, IComparable<Version>, ICompar
 
     public override string ToString()
     {
-        return Marshal.PtrToStringAnsi(NativeGlfw.GetVersionString()) ?? $"{Major}.{Minor}.{Revision}";
+        string? verStr = Marshal.PtrToStringAnsi(NativeGlfw.GetVersionString());
+        if (verStr is null)
+        {
+            return $"v{Major}.{Minor}.{Revision}";
+        }
+
+        string numbers = verStr[..5];
+        string rest = verStr[6..];
+        return $"v{numbers} ({rest})";
     }
 
     public override int GetHashCode()
