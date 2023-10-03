@@ -90,6 +90,33 @@ public sealed class Monitor : SafeHandleZeroOrMinusOneIsInvalid, IEquatable<Moni
 
     public string? Name => Marshal.PtrToStringAnsi(NativeGlfw.GetMonitorName(handle));
 
+    public IntPtr InternalHandle => handle;
+
+    public static void SetUserPointer(Monitor monitor, IntPtr pointer)
+    {
+        NativeGlfw.SetMonitorUserPointer(monitor.handle, pointer);
+    }
+
+    public static IntPtr GetUserPointer(Monitor monitor)
+    {
+        return NativeGlfw.GetMonitorUserPointer(monitor.handle);
+    }
+
+    public override string ToString()
+    {
+        return
+            $@"{{
+    Handle=0x{handle.ToString("X")},
+    Position={Position},
+    Work Area={WorkArea},
+    Physical Size (Millimeters)={PhysicalSizeMillimeters},
+    Content Scale={ContentScale},
+    Name={Name}
+}}";
+    }
+
+    #region IEquatable<Monitor>
+
     public bool Equals(Monitor? other)
     {
         if (ReferenceEquals(null, other))
@@ -120,19 +147,6 @@ public sealed class Monitor : SafeHandleZeroOrMinusOneIsInvalid, IEquatable<Moni
         return -1;
     }
 
-    public override string ToString()
-    {
-        return
-            $@"{{
-    Handle=0x{handle.ToString("X")},
-    Position={Position},
-    Work Area={WorkArea},
-    Physical Size (Millimeters)={PhysicalSizeMillimeters},
-    Content Scale={ContentScale},
-    Name={Name}
-}}";
-    }
-
     public static bool operator ==(Monitor? left, Monitor? right)
     {
         return Equals(left, right);
@@ -142,4 +156,6 @@ public sealed class Monitor : SafeHandleZeroOrMinusOneIsInvalid, IEquatable<Moni
     {
         return !Equals(left, right);
     }
+
+    #endregion
 }
