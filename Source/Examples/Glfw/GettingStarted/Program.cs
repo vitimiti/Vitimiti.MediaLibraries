@@ -12,8 +12,8 @@ try
         throw new ExternalException(description, (int)code);
     }
 
-    Window.SetHint((int)ContextClientApiHint.VersionMajor, 2);
-    Window.SetHint((int)ContextClientApiHint.VersionMinor, 0);
+    Window.SetHint(Hint.ContextVersionMajor, 2);
+    Window.SetHint(Hint.ContextVersionMinor, 0);
 
     using Window? window = Glfw.CreateWindow(new Size(640, 480), "Getting Started (GLFW)", null, null);
     if (window is null)
