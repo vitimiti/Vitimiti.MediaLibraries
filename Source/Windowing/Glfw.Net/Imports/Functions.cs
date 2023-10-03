@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace Vitimiti.MediaLibraries.Glfw.Net.Imports;
 
 internal static partial class NativeGlfw
@@ -13,4 +15,10 @@ internal static partial class NativeGlfw
         #error Platform not supported
 #endif
         ;
+
+    [DllImport(LibraryName, EntryPoint = "glfwGetError", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ErrorCode GetError(out IntPtr description);
+
+    [DllImport(LibraryName, EntryPoint = "glfwSetErrorCallback", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr SetErrorCallback(IntPtr callback);
 }
