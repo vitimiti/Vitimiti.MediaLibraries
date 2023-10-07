@@ -3,16 +3,37 @@ using System.Runtime.InteropServices;
 
 namespace Vitimiti.MediaLibraries.OpenGl;
 
-internal static class Gl
+internal sealed class Gl : IDisposable
 {
-    private static readonly IntPtr LibraryHandle = NativeLibrary.Load(GetLibraryName(), Assembly.GetCallingAssembly(),
+    private static readonly Gl? Instance = null;
+
+    private readonly IntPtr _libraryHandle = NativeLibrary.Load(GetLibraryName(), Assembly.GetCallingAssembly(),
         DllImportSearchPath.AssemblyDirectory | DllImportSearchPath.ApplicationDirectory |
         DllImportSearchPath.UseDllDirectoryForDependencies);
 
-    static Gl()
+    private Gl()
     {
-        AppDomain.CurrentDomain.DomainUnload += (_, _) => NativeLibrary.Free(LibraryHandle);
-        AppDomain.CurrentDomain.ProcessExit += (_, _) => NativeLibrary.Free(LibraryHandle);
+    }
+
+    public void Dispose()
+    {
+        ReleaseUnmanagedResources();
+        GC.SuppressFinalize(this);
+    }
+
+    private void ReleaseUnmanagedResources()
+    {
+        NativeLibrary.Free(_libraryHandle);
+    }
+
+    ~Gl()
+    {
+        ReleaseUnmanagedResources();
+    }
+
+    public static Gl GetInstance()
+    {
+        return Instance ?? new Gl();
     }
 
     private static string GetLibraryName()
@@ -25,8 +46,8 @@ internal static class Gl
         return RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? "libGL.dylib" : "libGL.so";
     }
 
-    public static IntPtr GetExportPointer(string entryPoint)
+    public IntPtr GetExportPointer(string entryPoint)
     {
-        return NativeLibrary.GetExport(LibraryHandle, entryPoint);
+        return NativeLibrary.GetExport(_libraryHandle, entryPoint);
     }
 }

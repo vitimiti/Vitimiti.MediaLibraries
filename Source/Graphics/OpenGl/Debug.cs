@@ -77,8 +77,8 @@ public class Debug
                         GCHandle.FromIntPtr((IntPtr)param).Target);
                 });
 
-            ((delegate* unmanaged<delegate* unmanaged<uint, uint, uint, uint, int, byte*, void*, void>, void*, void>)
-                Gl.GetExportPointer("glDebugMessageCallback"))(
+            ((delegate* unmanaged<delegate* unmanaged<uint, uint, uint, uint, int, byte*, void*, void>, void*, void>)Gl
+                .GetInstance().GetExportPointer("glDebugMessageCallback"))(
                 (delegate* unmanaged<uint, uint, uint, uint, int, byte*, void*, void>)delegatePtr,
                 (void*)(IntPtr)GCHandle.Alloc(userParam));
         }
@@ -90,9 +90,9 @@ public class Debug
         {
             fixed (uint* idsPtr = ids)
             {
-                ((delegate* unmanaged<uint, uint, uint, int, uint*, byte, void>)Gl.GetExportPointer(
-                    "glDebugMessageControl"))((uint)source, (uint)type, (uint)severity, ids.Length, idsPtr,
-                    (byte)(enabled ? 1 : 0));
+                ((delegate* unmanaged<uint, uint, uint, int, uint*, byte, void>)Gl.GetInstance()
+                    .GetExportPointer("glDebugMessageControl"))((uint)source, (uint)type, (uint)severity, ids.Length,
+                    idsPtr, (byte)(enabled ? 1 : 0));
             }
         }
     }
@@ -104,8 +104,9 @@ public class Debug
             byte[]? bytes = message is null ? null : Encoding.Default.GetBytes(message);
             fixed (byte* msgPtr = bytes)
             {
-                ((delegate* unmanaged<uint, uint, uint, uint, int, byte*, void>)Gl.GetExportPointer(
-                    "glDebugMessageInsert"))((uint)source, (uint)type, id, (uint)severity, bytes?.Length ?? 0, msgPtr);
+                ((delegate* unmanaged<uint, uint, uint, uint, int, byte*, void>)Gl.GetInstance()
+                    .GetExportPointer("glDebugMessageInsert"))((uint)source, (uint)type, id, (uint)severity,
+                    bytes?.Length ?? 0, msgPtr);
             }
         }
     }
@@ -194,8 +195,8 @@ public class Debug
             fixed (int* lengthsPtr = groupData.Lengths)
             fixed (byte* messagePtr = messageLogBytes)
             {
-                return ((delegate* unmanaged<uint, int, uint*, uint*, uint*, uint*, int*, byte*, uint>)
-                    Gl.GetExportPointer("glGetDebugMessageLog"))(sizeData.Count, sizeData.BufferSize, sourcesPtr,
+                return ((delegate* unmanaged<uint, int, uint*, uint*, uint*, uint*, int*, byte*, uint>)Gl.GetInstance()
+                    .GetExportPointer("glGetDebugMessageLog"))(sizeData.Count, sizeData.BufferSize, sourcesPtr,
                     typesPtr, idsPtr, severitiesPtr, lengthsPtr, messagePtr);
             }
         }
@@ -205,7 +206,7 @@ public class Debug
     {
         unsafe
         {
-            ((delegate* unmanaged<void>)Gl.GetExportPointer("glPopDebugGroup"))();
+            ((delegate* unmanaged<void>)Gl.GetInstance().GetExportPointer("glPopDebugGroup"))();
         }
     }
 
@@ -216,8 +217,8 @@ public class Debug
         {
             fixed (byte* messagePtr = bytes)
             {
-                ((delegate* unmanaged<uint, uint, int, byte*, void>)Gl.GetExportPointer("glPushDebugGroup"))(
-                    (uint)source, id, bytes?.Length ?? 0, messagePtr);
+                ((delegate* unmanaged<uint, uint, int, byte*, void>)Gl.GetInstance()
+                    .GetExportPointer("glPushDebugGroup"))((uint)source, id, bytes?.Length ?? 0, messagePtr);
             }
         }
     }
