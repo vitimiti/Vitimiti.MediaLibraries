@@ -3,26 +3,16 @@ using System.Runtime.InteropServices;
 
 namespace Vitimiti.MediaLibraries.OpenGl;
 
-public sealed partial class Gl : IDisposable
+internal static class Gl
 {
-    private readonly IntPtr _libraryHandle = NativeLibrary.Load(GetLibraryName(), Assembly.GetCallingAssembly(),
+    private static readonly IntPtr LibraryHandle = NativeLibrary.Load(GetLibraryName(), Assembly.GetCallingAssembly(),
         DllImportSearchPath.AssemblyDirectory | DllImportSearchPath.ApplicationDirectory |
         DllImportSearchPath.UseDllDirectoryForDependencies);
 
-    public void Dispose()
+    static Gl()
     {
-        ReleaseUnmanagedResources();
-        GC.SuppressFinalize(this);
-    }
-
-    private void ReleaseUnmanagedResources()
-    {
-        NativeLibrary.Free(_libraryHandle);
-    }
-
-    ~Gl()
-    {
-        ReleaseUnmanagedResources();
+        AppDomain.CurrentDomain.DomainUnload += (_, _) => NativeLibrary.Free(LibraryHandle);
+        AppDomain.CurrentDomain.ProcessExit += (_, _) => NativeLibrary.Free(LibraryHandle);
     }
 
     private static string GetLibraryName()
@@ -35,8 +25,8 @@ public sealed partial class Gl : IDisposable
         return RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? "libGL.dylib" : "libGL.so";
     }
 
-    private IntPtr GetFunctionPointerDelegate(string functionName)
+    public static IntPtr GetExportPointer(string entryPoint)
     {
-        return NativeLibrary.GetExport(_libraryHandle, $"gl{functionName}");
+        return NativeLibrary.GetExport(LibraryHandle, entryPoint);
     }
 }
