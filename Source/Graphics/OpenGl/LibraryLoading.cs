@@ -35,9 +35,8 @@ public sealed partial class Gl : IDisposable
         return RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? "libGL.dylib" : "libGL.so";
     }
 
-    private TDelegate GetFunctionPointerDelegate<TDelegate>(string functionName) where TDelegate : Delegate
+    private IntPtr GetFunctionPointerDelegate(string functionName)
     {
-        return Marshal.GetDelegateForFunctionPointer<TDelegate>(NativeLibrary.GetExport(_libraryHandle,
-            $"gl{functionName}"));
+        return NativeLibrary.GetExport(_libraryHandle, $"gl{functionName}");
     }
 }
