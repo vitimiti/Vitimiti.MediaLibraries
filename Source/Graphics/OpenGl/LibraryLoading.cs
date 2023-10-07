@@ -1,9 +1,9 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace Vitimiti.MediaLibraries.OpenGl.Library;
+namespace Vitimiti.MediaLibraries.OpenGl;
 
-internal sealed partial class Gl : IDisposable
+public sealed partial class Gl : IDisposable
 {
     private readonly IntPtr _libraryHandle = NativeLibrary.Load(GetLibraryName(), Assembly.GetCallingAssembly(),
         DllImportSearchPath.AssemblyDirectory | DllImportSearchPath.ApplicationDirectory |
