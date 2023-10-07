@@ -3,21 +3,29 @@ using System.Runtime.InteropServices;
 
 namespace Vitimiti.MediaLibraries.OpenGl.Library;
 
-internal static partial class Gl
+internal sealed partial class Gl : IDisposable
 {
-    private static readonly string LibraryName = InitLibraryName();
-
-    private static readonly IntPtr LibraryHandle = NativeLibrary.Load(LibraryName, Assembly.GetCallingAssembly(),
+    private readonly IntPtr _libraryHandle = NativeLibrary.Load(GetLibraryName(), Assembly.GetCallingAssembly(),
         DllImportSearchPath.AssemblyDirectory | DllImportSearchPath.ApplicationDirectory |
         DllImportSearchPath.UseDllDirectoryForDependencies);
 
-    static Gl()
+    public void Dispose()
     {
-        AppDomain.CurrentDomain.DomainUnload += (_, _) => NativeLibrary.Free(LibraryHandle);
-        AppDomain.CurrentDomain.ProcessExit += (_, _) => NativeLibrary.Free(LibraryHandle);
+        ReleaseUnmanagedResources();
+        GC.SuppressFinalize(this);
     }
 
-    private static string InitLibraryName()
+    private void ReleaseUnmanagedResources()
+    {
+        NativeLibrary.Free(_libraryHandle);
+    }
+
+    ~Gl()
+    {
+        ReleaseUnmanagedResources();
+    }
+
+    private static string GetLibraryName()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
@@ -27,9 +35,9 @@ internal static partial class Gl
         return RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? "libGL.dylib" : "libGL.so";
     }
 
-    private static TDelegate GetFunctionPointerDelegate<TDelegate>(EntryPoint entryPoint) where TDelegate : Delegate
+    private TDelegate GetFunctionPointerDelegate<TDelegate>(string functionName) where TDelegate : Delegate
     {
-        return Marshal.GetDelegateForFunctionPointer<TDelegate>(NativeLibrary.GetExport(LibraryHandle,
-            EntryPointNames[(int)entryPoint]));
+        return Marshal.GetDelegateForFunctionPointer<TDelegate>(NativeLibrary.GetExport(_libraryHandle,
+            $"gl{functionName}"));
     }
 }
